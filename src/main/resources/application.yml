@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    password: Password1
+    url: jdbc:mysql://localhost:3306/sbms?serverTimezone=UTC
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+logging:
+  file:
+    name: book.log
