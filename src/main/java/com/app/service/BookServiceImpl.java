@@ -29,9 +29,15 @@ public class BookServiceImpl implements BookService {
 		return bookRepository.save(book);
 	}
 	@Override
-	public void deleteBook(Integer id) {
+	public String deleteBook(Integer id) {
 		// TODO Auto-generated method stub
-		 bookRepository.deleteById(id);
+		if(bookRepository.existsById(id)) {
+			bookRepository.deleteById(id);
+			return "Book Deleted";
+		}else
+			return "Book not Found";
+		
+			
 	}
 	
 

@@ -31,14 +31,15 @@ public class BookController {
 	// @GetMapping(value = "/book/{id}", produces =
 	// MediaType.APPLICATION_JSON_VALUE, consumes = "text/palin")
 	@GetMapping(value = "/book/{id}")
-	public ResponseEntity<Book> getBook(@PathVariable Integer id) {
+	public ResponseEntity<?> getBook(@PathVariable Integer id) {
 		logger.info("getBook() execution started");
 		Optional<Book> book = bookService.getBook(id);
 		logger.info("getBook() execution Ended");
+		String body="Book Not Found";
 		if (book.isPresent())
 			return new ResponseEntity<>(book.get(), HttpStatus.OK);
 		else
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(body, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/books", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -79,8 +80,7 @@ public class BookController {
 	@DeleteMapping(value = "/book/{id}")
 	public ResponseEntity<String> deleteBook(@PathVariable Integer id) {
 		logger.info("deleteBook() execution started");
-		String body = "Book Deleted";
-		bookService.deleteBook(id);
+		String body = bookService.deleteBook(id);		
 		logger.info("deleteBook() execution started");
 		return new ResponseEntity<>(body, HttpStatus.OK);
 	}

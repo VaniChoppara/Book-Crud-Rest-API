@@ -9,5 +9,5 @@ public interface BookService {
 	Optional<Book> getBook(Integer id);
 	List<Book> getBooks();
 	Book upsertBook(Book book);
-	void deleteBook(Integer id);
+	String deleteBook(Integer id);
 }
